@@ -1,23 +1,252 @@
-import { Head } from 'mdx-deck'
+import { Head, Image } from "mdx-deck";
+import { Columns, Emphasis } from "./Layouts";
+console.clear();
+export { default as theme } from "./theme";
 
-export { default as theme } from './theme'
+## EasilyBaffled
 
-<Head>
-  <title>Presentation Title</title>
-</Head>
+<Image
+  size="200px"
+  height="50vh"
+  src="https://en.gravatar.com/userimage/140244050/c022c61ad22b520b6c5f43be433cda97.jpg"
+/>
 
-# Hello
-
----
-
-## Edit this file
-
-To create your presentation
-
-```notes
-- Create speaker notes in fenced code blocks
+```notes Intro.1
+I'm Danny
+you can find me as EasilyBaffled, just about everywhere
 ```
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+## Why are any of use here?
+
+####
+
+`To fix what ain’t broke!`
+
+```notes Intro.2
+I have been batting around an idea for awhile. And I wanted to pass it on to all of you for a review.
+Because it's made my life alot easier, and is almost nothing.
+On an almost daily basis, when I need to do a little debbugging I end up writing this...
+```
+
+---
+
+```js
+console.ident = v => (console.log(v), v);
+```
+
+```notes ident.1
+First, yes I am attatching to the global console object. I'm a mad man.
+Second, the parens ...
+```
+
+---
+
+## Identity Function
+
+```js
+v => v;
+```
+
+```notes ident.2
+I'm taking advantage of a concept called the identiy funciton. With this signature. Thing in, Thing out.
+What the signature doesn't revleal is all of the affects that happen between the arrow.
+If that seems odd to you now, that's perfectly resonable, it's about to make sense
+```
+
+---
+
+Javascript has become an Expressive language
+
+```notes problem.1
+Starting with ES6 (salvation of the browser) Javascript has become a more Expressive language
+```
+
+---
+
+export default Columns.two;
+
+`Async`
+
+```js
+Promise;
+```
+
+`Iterate`
+
+```js
+map;
+```
+
+`Conditional`
+
+```js
+bool ? a : b;
+```
+
+`Function`
+
+```js
+v => v;
+```
+
+```notes problem.2
+By which I mean it has become filled with expression.
+expressions are things that result in a value. So you can pass them into a funciton without issue
+...This is not a problem, I'm a fan, but it has sparked my problem
+```
+
+---
+
+#### We’ve moved from Statements to Expressions
+
+---
+
+export default Columns.three;
+
+`Async`
+
+```js
+Promise;
+```
+
+```js
+callbacks;
+```
+
+`Iterate`
+
+```js
+map;
+```
+
+```js
+for( var ... )
+```
+
+`Conditional`
+
+```js
+bool ? a : b;
+```
+
+```js
+if ( bool ) ...
+else ...
+```
+
+`Function`
+
+```js
+v => v;
+```
+
+```js
+function ( v ) {
+    return v
+}
+```
+
+```notes problem.3
+And JS is filled with them, almost every Statement has an Expresive counterpart,
+```
+
+---
+
+### Almost
+
+```notes problem.4
+...almost
+```
+
+---
+
+There is no `Expression` console function<Emphasis>\*</Emphasis>
+
+```notes problem.5
+MDN has 21 console functions. One outputs a table. One lets you measure performance. Log lets you use css to style the output.
+But they all return `undefined` - so I lied, they are expressions, just really dumb expressions
+Which makes debbuging just that much harder, not harder but cumbersome
+```
+
+---
+
+    fetch(userBaseData)
+        .then( ( { userId } ) => fetchUserAccounts( userId ))
+        .then( console.ident )
+        .then( formatCurrencies )
+
+```notes problem.6
+
+```
+
+---
+
+    - ternary
+    Number(val) ? formatCurrency(str) : val
+
+```notes problem.7
+
+```
+
+---
+
+    - Object creation with ternary
+    ```js
+    ( acc, val ) => ( {
+        ...acc,
+        amount: Number(val) ? formatCurrency(str) : val
+    } )
+    ```
+
+```notes problem.8
+
+```
+
+---
+
+```js
+v => v;
+```
+
+```notes solution.1
+Back to where we started, a function that takes in a thing and returns a thing.
+To the thing calling it, nothing happens
+```
+
+---
+
+```js
+console.ident = v => (console.log(v), v);
+```
+
+```notes solution.2
+console.ident is the missing logging function that we need in modern JS
+```
+
+---
+
+    - for loop
+
+```notes solution.3
+
+```
+
+---
+
+    - ternary
+
+```notes solution.4
+
+```
+
+---
+
+    - Object creation with ternary
+
+```notes solution.5
+
+```
+
+---
