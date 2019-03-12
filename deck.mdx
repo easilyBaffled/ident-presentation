@@ -1,252 +1,349 @@
-import { Head, Image } from "mdx-deck";
-import { Columns, Emphasis } from "./Layouts";
-console.clear();
-export { default as theme } from "./theme";
+import { Head, Image } from 'mdx-deck';
+import { Columns, Emphasis } from './Layouts';
+console.clear( );
+export { default as theme } from './theme';
 
 ## EasilyBaffled
 
 <Image
-  size="200px"
-  height="50vh"
-  src="https://en.gravatar.com/userimage/140244050/c022c61ad22b520b6c5f43be433cda97.jpg"
+    size="200px"
+    height="50vh"
+    src="https://en.gravatar.com/userimage/140244050/c022c61ad22b520b6c5f43be433cda97.jpg"
 />
 
-```notes Intro.1
-I'm Danny
-you can find me as EasilyBaffled, just about everywhere
+// include twitter, GitHub, and X link icons
+
+```notes
+Hi I'm Danny Michaelis, you can find me as easilyBaffled pretty much everywhere.
 ```
 
 ---
 
-## Why are any of use here?
+# Why are any of us here?
 
-####
+## `To fix what ain’t broke!`
 
-`To fix what ain’t broke!`
-
-```notes Intro.2
-I have been batting around an idea for awhile. And I wanted to pass it on to all of you for a review.
-Because it's made my life alot easier, and is almost nothing.
-On an almost daily basis, when I need to do a little debbugging I end up writing this...
+```notes
+I have been batting around an idea for a while, and I wanted to pass it around for a review. It has made my life a lot simpler, it weighs almost nothing, and I want it to grow. On an almost daily basis, when I need to do a little debugging, I end up writing this:
 ```
 
 ---
 
 ```js
-console.ident = v => (console.log(v), v);
+console.ident =
+    v => ( console.log( v ), v );
 ```
 
-```notes ident.1
-First, yes I am attatching to the global console object. I'm a mad man.
-Second, the parens ...
+```notes
+First, yes I am attaching to the global console object. I'm a mad man.
+Second, the parens. When used in this way it means every entry is evaluated in the same scope, left to right, and then return the result of the last entry.
+In this case, it means this function takes in a value, logs the value, then returns the value.
 ```
 
 ---
 
-## Identity Function
+### Identity Function
 
 ```js
 v => v;
 ```
 
-```notes ident.2
-I'm taking advantage of a concept called the identiy funciton. With this signature. Thing in, Thing out.
-What the signature doesn't revleal is all of the affects that happen between the arrow.
-If that seems odd to you now, that's perfectly resonable, it's about to make sense
+```notes
+I'm taking advantage of a concept called the identity function, which has this signature- thing in, thing out. What the signature doesn't reveal are all of the effects that happen between the arrow. If that seems odd to you now, that's perfectly reasonable, and it's about to make sense.
 ```
 
 ---
 
-Javascript has become an Expressive language
+### Javascript has become an `Expressive` language
 
-```notes problem.1
-Starting with ES6 (salvation of the browser) Javascript has become a more Expressive language
+```notes
+Starting with ES6 Javascript has become a more Expressive language. By which I mean it has become filled with expression.
+Expressions are things that result in a value.
+
+For Example:
 ```
 
 ---
 
 export default Columns.two;
 
-`Async`
+**BinaryExpression:**
 
-```js
-Promise;
-```
+`1+1`
 
-`Iterate`
+**AssignmentExpression:**
 
-```js
-map;
-```
+`x = 1 + 1`
 
-`Conditional`
+**ArrowFunctionExpression:**
 
-```js
-bool ? a : b;
-```
+`v => v + 1`
 
-`Function`
+**CallExpression:**
 
-```js
-v => v;
-```
+`[1, 2].map( v => v + 1 )`
 
-```notes problem.2
-By which I mean it has become filled with expression.
-expressions are things that result in a value. So you can pass them into a funciton without issue
-...This is not a problem, I'm a fan, but it has sparked my problem
+```notes
+Each one of these reults in a new value.
+`2`, `x`, `a funciton` and so on.
+Esentally Expresssions are things that you could pass into a function without issue.
+Where as Statements, are things there trying to cram them into a function call would throw an error. Like the for loop, or if statement. Blocks essentally.
 ```
 
 ---
 
-#### We’ve moved from Statements to Expressions
-
----
 
 export default Columns.three;
 
-`Async`
+**Async:**
 
 ```js
-Promise;
-```
-
-```js
-callbacks;
-```
-
-`Iterate`
-
-```js
-map;
+callbacks
 ```
 
 ```js
-for( var ... )
+`Promise`, `async`
 ```
 
-`Conditional`
+**Iterate:**
 
 ```js
-bool ? a : b;
-```
-
-```js
-if ( bool ) ...
-else ...
-```
-
-`Function`
-
-```js
-v => v;
+for( var ... ){ ... }
 ```
 
 ```js
-function ( v ) {
-    return v
-}
+`map`, `filter`, `reduce`
 ```
 
-```notes problem.3
-And JS is filled with them, almost every Statement has an Expresive counterpart,
+**Conditional:**
+
+```js
+if ( bool ) ... else …
+```
+```js
+`bool ? a : b`
 ```
 
----
+**Function:**
 
-### Almost
-
-```notes problem.4
-...almost
+```js
+function ( v ) {…}
 ```
 
----
-
-There is no `Expression` console function<Emphasis>\*</Emphasis>
-
-```notes problem.5
-MDN has 21 console functions. One outputs a table. One lets you measure performance. Log lets you use css to style the output.
-But they all return `undefined` - so I lied, they are expressions, just really dumb expressions
-Which makes debbuging just that much harder, not harder but cumbersome
+```js
+`v => v`
 ```
 
----
+```notes
+### almost every Statement now has an Expressive counterpart,
 
-    fetch(userBaseData)
-        .then( ( { userId } ) => fetchUserAccounts( userId ))
-        .then( console.ident )
-        .then( formatCurrencies )
 
-```notes problem.6
-
+I have been a fan of the influx of expressions, I think most people have.
+but it has sparked an issue for me. There is no `Expression` console function.
 ```
 
 ---
 
-    - ternary
-    Number(val) ? formatCurrency(str) : val
+// Screen%20Shot%202019-03-12%20at%206.21.32%20PM.png
 
-```notes problem.7
-
+```notes
+That's a bit of a lie. MDN as 21 different console functions and they all returned undefined. So they are expressions, they're just dumb expressions ( like `Array.prototype.push` ). Which makes debugging logging cumbersome.
+For example:
 ```
 
 ---
 
-    - Object creation with ternary
-    ```js
-    ( acc, val ) => ( {
-        ...acc,
-        amount: Number(val) ? formatCurrency(str) : val
-    } )
-    ```
+### Function Composition
 
-```notes problem.8
+```js
+const userID = getUserId(
+    JSON.parse( localStorage.getItem( 'user' ) )
+);
+// Uncaught SyntaxError: Unexpected token o in JSON at position 1
+```
 
+```notes
+`JSON.parse` throws up an unhelpful error.
+```
+
+---
+
+### Function Composition
+
+```js
+const userStr = localStorage.getItem( ‘user’ )
+console.log( userStr )
+// "[ object Object ]"
+
+const userID = getUserId(
+    JSON.parse( userStr )
+);
+// Uncaught SyntaxError: Unexpected token o in JSON at position 1
+```
+
+```notes
+`JSON.parse` throws up an unhelpful error. To find out why you have to pull out the offending value and log it.
+```
+
+---
+
+### Ternary
+
+```js
+Number( val ) ? formatCurrency( str ) : val;
+// 0
+```
+```notes
+To remind yourself that `Number( "0" )` evaluates to `0`, which is false.
+```
+---
+
+### Ternary
+
+```js
+console.log( val, Number( val ), !!Number( val ) );
+// 0 0 false
+Number( val ) ? formatCurrency( str ) : val;
+// 0
+```
+
+---
+
+### Object Construction, Return Expressions
+
+```js
+const pickAndFormatTransaction = ( {
+    description,
+    date,
+    amount,
+    ...details
+} ) => ( {
+    description,
+    date: moment( date ).format( 'DD/MM/YYY' ),
+    amount: Number( val ) ? formatCurrency( str ) : val,
+    details
+} );
+```
+
+```notes
+If you want to check anything about that object, it will get worse before it gets better.
 ```
 
 ---
 
 ```js
-v => v;
+console.ident =
+    v => ( console.log( v ), v );
 ```
 
-```notes solution.1
-Back to where we started, a function that takes in a thing and returns a thing.
-To the thing calling it, nothing happens
+```notes
+`console.ident` is the missing logging function that we need in modern JS. This function takes in a value, logs the value, then returns the value. To the calling function, and the context around it, nothing happens. Which means there is no extra overhead or setup to debugging.
 ```
 
 ---
+
+### Function Composition
 
 ```js
-console.ident = v => (console.log(v), v);
+const userStr = localStorage.getItem( ‘user’ )
+console.log( userStr )
+// "[object Object]"
+
+const userID = getUserId(
+    JSON.parse( userStr )
+);
+// Uncaught SyntaxError: Unexpected token o in JSON at position 1
 ```
 
-```notes solution.2
-console.ident is the missing logging function that we need in modern JS
-```
-
----
-
-    - for loop
-
-```notes solution.3
-
-```
-
----
-
-    - ternary
-
-```notes solution.4
-
+```notes
+Becomes :
 ```
 
 ---
 
-    - Object creation with ternary
+### Function Composition
 
-```notes solution.5
-
+```js
+const user = JSON.parse(
+	console.ident( localStorage.getItem( ‘user’ ) )
+);
 ```
 
 ---
+
+### Ternary
+
+```js
+console.log( val, Number( val ), !!Number( val ) );
+// 0 0 false
+Number( val ) ? formatCurrency( str ) : val;
+// 0
+```
+
+```notes
+Becomes :
+```
+
+---
+
+### Ternary
+
+```js
+console.ident( Number( console.ident( val ) ) )
+    ? formatCurrency( str )
+    : val;
+```
+
+---
+
+### Object Construction, Return Expressions
+
+```js
+const pickAndFormatTransaction = ( {
+    description,
+    date,
+    amount,
+    ...details
+} ) =>
+    console.ident( {
+        description,
+        date: moment( console.ident( date ) ).format( 'DD/MM/YYY' ),
+        amount: console.ident( Number( val ) )
+            ? formatCurrency( str )
+            : val
+    } );
+```
+
+```notes
+Digging into any aspect of the object becomes almost nothing this way.
+```
+
+---
+
+### Chaining
+
+```js
+const result = console.ident( arr
+    .map( parseNumbers )
+    .filter( removeOdds ) )
+    .reduce( average );
+```
+
+```notes
+As an additional example. `console.ident` allows you to keep your chain together when debugging steps.
+```
+
+---
+
+### Conclusion
+
+```js
+console.ident =
+    v => ( console.log( v ), v );
+```
+
+### `Have Fun!`
+
+```notes
+I have a module( [GitHub - easilyBaffled/console.ident: Created with CodeSandbox]( https://github.com/easilyBaffled/console.ident ) ) out there that solves a few issues of `console.ident`. And it also lets you choose between adding it to the global object or using as it's own function. But it's 26 characters I encourage you to play with the idea and use the module as a place to discuss it.
+```
