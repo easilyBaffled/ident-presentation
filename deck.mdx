@@ -1,4 +1,4 @@
-import { Head, Image } from 'mdx-deck';
+import { Head, Image, Notes } from 'mdx-deck';
 import { Columns, Emphasis } from './Layouts';
 console.clear( );
 export { default as theme } from './theme';
@@ -36,9 +36,9 @@ export { default as theme } from './theme';
     </a>
 </div>
 
-```notes
+<Notes>
 Hi I'm Danny Michaelis, you can find me as easilyBaffled pretty much everywhere.
-```
+</Notes>
 
 ---
 
@@ -46,9 +46,9 @@ Hi I'm Danny Michaelis, you can find me as easilyBaffled pretty much everywhere.
 
 ### `To fix what ain't broke!`
 
-```notes
+<Notes>
 I have been batting around an idea for a while, and I wanted to pass it around for a review. It has made my life a lot simpler, it weighs almost nothing, and I want it to grow. On an almost daily basis, when I need to do a little debugging, I end up writing this:
-```
+</Notes>
 
 ---
 
@@ -56,11 +56,11 @@ I have been batting around an idea for a while, and I wanted to pass it around f
 console.ident = \n\tv => ( console.log(  v ),  v );
 ```
 
-```notes
+<Notes>
 First, yes I am attaching to the global console object. I'm a mad man.
 Second, the parens. When used in this way it means every entry is evaluated in the same scope, left to right, and then return the result of the last entry.
 In this case, it means this function takes in a value, logs the value, then returns the value.
-```
+</Notes>
 
 ---
 
@@ -70,20 +70,20 @@ In this case, it means this function takes in a value, logs the value, then retu
 v => v;
 ```
 
-```notes
+<Notes>
 I'm taking advantage of a concept called the identity function, which has this signature- thing in, thing out. What the signature doesn't reveal are all of the effects that happen between the arrow. If that seems odd to you now, that's perfectly reasonable, and it's about to make sense.
-```
+</Notes>
 
 ---
 
 ### Javascript has become an `Expressive` language
 
-```notes
+<Notes>
 Starting with ES6 Javascript has become a more Expressive language. By which I mean it has become filled with expression.
 Expressions are things that result in a value.
 
 For Example:
-```
+</Notes>
 
 ---
 
@@ -105,12 +105,12 @@ export default Columns.two;
 
 `[1, 2].map( v => v + 1 )`
 
-```notes
+<Notes>
 Each one of these results in a new value.
 `2`, `x`, `a function` and so on.
 Essentially Expressions are things that you could pass into a function without issue.
 Where as Statements, are things there trying to cram them into a function call would throw an error. Like the for loop, or if statement. Blocks essentially.
-```
+</Notes>
 
 ---
 
@@ -156,22 +156,22 @@ function ( v ) {…}
 `v => v`;
 ```
 
-```notes
+<Notes>
 ### almost every Statement now has an Expressive counterpart,
 
 
 I have been a fan of the influx of expressions, I think most people have.
 but it has sparked an issue for me. There is no `Expression` console function.
-```
+</Notes>
 
 ---
 
 <Image width="50vw" height="30vh" src="chrome-console.png"/>
 
-```notes
+<Notes>
 That's a bit of a lie. MDN as 21 different console functions and they all returned undefined. So they are expressions, they're just dumb expressions ( like `Array.prototype.push` ). Which makes debugging logging cumbersome.
 For example:
-```
+</Notes>
 ---
 
 ### Function Composition
@@ -183,9 +183,9 @@ const userID = getUserId(
 // Uncaught SyntaxError: Unexpected token o in JSON at position 1
 ```
 
-```notes
+<Notes>
 `JSON.parse` throws up an unhelpful error.
-```
+</Notes>
 
 ---
 
@@ -202,9 +202,9 @@ const userID = getUserId(
 // Uncaught SyntaxError: Unexpected token o in JSON at position 1
 ```
 
-```notes
+<Notes>
 `JSON.parse` throws up an unhelpful error. To find out why you have to pull out the offending value and log it.
-```
+</Notes>
 
 ---
 
@@ -215,9 +215,9 @@ Number( val ) ? formatCurrency( str ) : val;
 // 0
 ```
 
-```notes
+<Notes>
 To remind yourself that `Number( "0" )` evaluates to `0`, which is false.
-```
+</Notes>
 ---
 
 ### Ternary
@@ -247,9 +247,9 @@ const pickAndFormatTransaction = ( {
  } );
 ```
 
-```notes
+<Notes>
 If you want to check anything about that object, it will get worse before it gets better.
-```
+</Notes>
 
 ---
 
@@ -258,9 +258,9 @@ console.ident =
     v => ( console.log( v ), v );
 ```
 
-```notes
+<Notes>
 `console.ident` is the missing logging function that we need in modern JS. This function takes in a value, logs the value, then returns the value. To the calling function, and the context around it, nothing happens. Which means there is no extra overhead or setup to debugging.
-```
+</Notes>
 
 ---
 
@@ -277,9 +277,9 @@ const userID = getUserId(
 // Uncaught SyntaxError: Unexpected token o in JSON at position 1
 ```
 
-```notes
-Becomes :
-```
+<Notes>
+Becomes:
+</Notes>
 
 ---
 
@@ -302,9 +302,9 @@ Number( val ) ? formatCurrency( str ) : val;
 // 0
 ```
 
-```notes
-Becomes :
-```
+<Notes>
+Becomes:
+</Notes>
 
 ---
 
@@ -336,9 +336,9 @@ const pickAndFormatTransaction = ( {
      } );
 ```
 
-```notes
+<Notes>
 Digging into any aspect of the object becomes almost nothing this way.
-```
+</Notes>
 
 ---
 
@@ -350,9 +350,9 @@ const result = console
     .reduce( average );
 ```
 
-```notes
+<Notes>
 As an additional example. `console.ident` allows you to keep your chain together when debugging steps.
-```
+</Notes>
 
 ---
 
@@ -364,6 +364,6 @@ console.ident = \n\tv => ( console.log( v ), v );
 
 ### `Have Fun!`
 
-```notes
+<Notes>
 I have a module( [GitHub - easilyBaffled/console.ident: Created with CodeSandbox]( https://github.com/easilyBaffled/console.ident ) ) out there that solves a few issues of `console.ident`. And it also lets you choose between adding it to the global object or using as it's own function. But it's 26 characters I encourage you to play with the idea and use the module as a place to discuss it.
-```
+</Notes>
