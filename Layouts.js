@@ -1,13 +1,5 @@
 import React from 'react';
 
-console.ident = (v, l = '') => (console.log(l, v), v);
-
-export const Emphasis = ({ children }) => (
-    <span style={{ fontWeight: 900 }}>{children}</span>
-);
-
-// .columns > *:nth-child(n) ...
-
 export const Columns = count => ({ children }) => (
     <div
         className="columns"
