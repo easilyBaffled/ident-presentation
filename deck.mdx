@@ -1,7 +1,20 @@
-import { Head, Image, Notes } from 'mdx-deck';
-import { Columns, Emphasis } from './Layouts';
-console.clear( );
-export { default as theme } from './theme';
+import { Head, Image, Notes } from 'mdx-deck'
+import { Columns, Grid, Emphasis } from './Layouts'
+import {
+    tapDefinition,
+    chainStart,
+    chainLog,
+    chainTap,
+    parseStart,
+    parseLog,
+    parseTap,
+    objectStart,
+    objectLog,
+    objectTap,
+    tapDefinitionExpanded
+} from './codeExamples'
+import Js from './CodeBlock'
+export { default as theme } from './theme'
 
 
 ## EasilyBaffled
@@ -18,7 +31,7 @@ export { default as theme } from './theme';
 />
 
 <div style={{ margin: '2vw' }}>
-    <a href="https://github.com/easilyBaffled">
+    <a href="https://github.com/easilyBaffled/ident-presentation.git">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
@@ -37,7 +50,8 @@ export { default as theme } from './theme';
 </div>
 
 <Notes>
-Hi I'm Danny Michaelis, you can find me as easilyBaffled pretty much everywhere.
+    Hi I'm Danny Michaelis. I've been a frontend developer for 5 years now you can find me as easilyBaffled pretty much everywhere.
+    The Slides for this talk are available on my Github. But really you'll only need the last slide.
 </Notes>
 
 ---
@@ -47,121 +61,127 @@ Hi I'm Danny Michaelis, you can find me as easilyBaffled pretty much everywhere.
 ### `To fix what ain't broke!`
 
 <Notes>
-I have been batting around an idea for a while, and I wanted to pass it around for a review. It has made my life a lot simpler, it weighs almost nothing, and I want it to grow. On an almost daily basis, when I need to do a little debugging, I end up writing this:
+    I have a small idea for a pinprick of a problem that I presume people have daily.
+    Story about untangling a big bad knot of JSON
+</Notes>
+
+---
+<Grid>
+    <Js>{objectStart}</Js>
+</Grid>
+<Notes>
+    A concise object formatting. No cruft.
+    I was so proud of it, I was going to write documentation for it.
+    ...And then it all sort of went belly up 😣
+    My unit tests uncovered a beasty of a bug.
+    And all of that nice clean, concise, composed code meant there was no room to fit a `console.log`
+    So I had to make room for it
+</Notes>
+
+---
+<Grid>
+    <Js>{objectLog}</Js>
+</Grid>
+<Notes>
+    `console.log`, our dear friend `console.log`, is one of the few remnants of an older time.
+    When Javascript was considered one of the worst languages, whereas now it's one of the most popular.
 </Notes>
 
 ---
 
-```js
-console.ident = \n\tv => ( console.log(  v ),  v );
-```
+### Javascript has become
+### an <span style={{color: '#0af'}}>Expressive</span> language
 
 <Notes>
-First, yes I am attaching to the global console object. I'm a mad man.
-Second, the parens. When used in this way it means every entry is evaluated in the same scope, left to right, and then return the result of the last entry.
-In this case, it means this function takes in a value, logs the value, then returns the value.
+    Javascript has become a more Expressive language. By which I mean it has become filled with expression.
+    Expressions are things that result in a value.
+
+    For Example:
 </Notes>
 
 ---
 
-### Identity Function
+<Columns.two enableBorder={true}>
+
+**BinaryExpression**
+
+`1+1`
+
+**AssignmentExpression**
+
+`x = 1 + 1`
+
+**ArrayExpression**
+
+`[1, 2]`
+
+**CallExpression**
+
+`[1, 2].map( v => v + 1 )`
+
+**CallExpression**
+
+```js
+[1, 2]
+    .map( v => v + 1 )
+    .filter( v => v % 2 )
+```
+
+</Columns.two>
+
+<Notes>
+    Essentially Expressions are things that you could pass into a function without issue.
+    Where as Statements, are things there trying to cram them into a function call would throw an error. Like the for loop, or if statement. Blocks essentially.
+</Notes>
+
+---
+
+
+<Columns.three enableBorder={true}>
+
+Iterate
+
+```js
+for( var ... ){
+ ...
+}
+```
+
+```js
+map,
+filter,
+reduce
+```
+
+Conditional
+
+```js
+if ( bool ) {
+    ...
+else {
+    ...
+```
+
+```js
+bool ? a : b;
+```
+
+Function
+
+```js
+function x ( v ) {
+    …
+}
+```
 
 ```js
 v => v;
 ```
+</Columns.three>
 
 <Notes>
-I'm taking advantage of a concept called the identity function, which has this signature- thing in, thing out. What the signature doesn't reveal are all of the effects that happen between the arrow. If that seems odd to you now, that's perfectly reasonable, and it's about to make sense.
-</Notes>
-
----
-
-### Javascript has become an `Expressive` language
-
-<Notes>
-Starting with ES6 Javascript has become a more Expressive language. By which I mean it has become filled with expression.
-Expressions are things that result in a value.
-
-For Example:
-</Notes>
-
----
-
-export default Columns.two;
-
-**BinaryExpression:**
-
-`1+1`
-
-**AssignmentExpression:**
-
-`x = 1 + 1`
-
-**ArrowFunctionExpression:**
-
-`v => v + 1`
-
-**CallExpression:**
-
-`[1, 2].map( v => v + 1 )`
-
-<Notes>
-Each one of these results in a new value.
-`2`, `x`, `a function` and so on.
-Essentially Expressions are things that you could pass into a function without issue.
-Where as Statements, are things there trying to cram them into a function call would throw an error. Like the for loop, or if statement. Blocks essentially.
-</Notes>
-
----
-
-export default Columns.three;
-
-**Async:**
-
-```js
-callbacks;
-```
-
-```js
-`Promise`, `async`;
-```
-
-**Iterate:**
-
-```js
-for( var ... ){ ... }
-```
-
-```js
-`map`, `filter`, `reduce`;
-```
-
-**Conditional:**
-
-```js
-if ( bool ) ... else …
-```
-
-```js
-`bool ? a : b`;
-```
-
-**Function:**
-
-```js
-function ( v ) {…}
-```
-
-```js
-`v => v`;
-```
-
-<Notes>
-### almost every Statement now has an Expressive counterpart,
-
-
-I have been a fan of the influx of expressions, I think most people have.
-but it has sparked an issue for me. There is no `Expression` console function.
+almost every Statement now has an Expression counterpart,
+There is no `Expression` console function.
 </Notes>
 
 ---
@@ -169,201 +189,116 @@ but it has sparked an issue for me. There is no `Expression` console function.
 <Image width="50vw" height="30vh" src="chrome-console.png"/>
 
 <Notes>
-That's a bit of a lie. MDN as 21 different console functions and they all returned undefined. So they are expressions, they're just dumb expressions ( like `Array.prototype.push` ). Which makes debugging logging cumbersome.
-For example:
-</Notes>
----
-
-### Function Composition
-
-```js
-const userID = getUserId(
-    JSON.parse( localStorage.getItem( 'user' ) )
-);
-// Uncaught SyntaxError: Unexpected token o in JSON at position 1
-```
-
-<Notes>
-`JSON.parse` throws up an unhelpful error.
-</Notes>
-
----
-
-### Function Composition
-
-```js
-const userStr = localStorage.getItem( 'user' )
-console.log( userStr )
-// "[ object Object ]"
-
-const userID = getUserId(
-    JSON.parse( userStr )
-);
-// Uncaught SyntaxError: Unexpected token o in JSON at position 1
-```
-
-<Notes>
-`JSON.parse` throws up an unhelpful error. To find out why you have to pull out the offending value and log it.
-</Notes>
-
----
-
-### Ternary
-
-```js
-Number( val ) ? formatCurrency( str ) : val;
-// 0
-```
-
-<Notes>
-To remind yourself that `Number( "0" )` evaluates to `0`, which is false.
-</Notes>
----
-
-### Ternary
-
-```js
-console.log( val, Number( val ), !!Number( val ) );
-// 0 0 false
-Number( val ) ? formatCurrency( str ) : val;
-// 0
-```
-
----
-
-### Object Construction, Return Expressions
-
-```js
-const pickAndFormatTransaction = ( {
-    description,
-    date,
-    amount,
-    ...details
- } ) => ( {
-    description,
-    date: moment( date ).format( 'DD/MM/YYY ' ),
-    amount: Number( val ) ? formatCurrency( str ) : val,
-    details
- } );
-```
-
-<Notes>
-If you want to check anything about that object, it will get worse before it gets better.
-</Notes>
-
----
-
-```js
-console.ident =
-    v => ( console.log( v ), v );
-```
-
-<Notes>
-`console.ident` is the missing logging function that we need in modern JS. This function takes in a value, logs the value, then returns the value. To the calling function, and the context around it, nothing happens. Which means there is no extra overhead or setup to debugging.
-</Notes>
-
----
-
-### Function Composition
-
-```js
-const userStr = localStorage.getItem( 'user' )
-console.log( userStr )
-// "[object Object]"
-
-const userID = getUserId(
-    JSON.parse( userStr )
-);
-// Uncaught SyntaxError: Unexpected token o in JSON at position 1
-```
-
-<Notes>
-Becomes:
-</Notes>
-
----
-
-### Function Composition
-
-```js
-const user = JSON.parse(
-	console.ident( localStorage.getItem( 'user' ) )
-);
-```
-
----
-
-### Ternary
-
-```js
-console.log( val, Number( val ), !!Number( val ) );
-// 0 0 false
-Number( val ) ? formatCurrency( str ) : val;
-// 0
-```
-
-<Notes>
-Becomes:
-</Notes>
-
----
-
-### Ternary
-
-```js
-console.ident( Number( console.ident( val ) ) )
-    ? formatCurrency( str )
-    : val;
-```
-
----
-
-### Object Construction, Return Expressions
-
-```js
-const pickAndFormatTransaction = ( {
-    description,
-    date,
-    amount,
-    ...details
- } ) =>
-    console.ident( {
-        description,
-        date: moment( console.ident( date )).format( 'DD/MM/YYY ' ),
-        amount: console.ident( Number( val ))
-            ? formatCurrency( str )
-            : val
-     } );
-```
-
-<Notes>
-Digging into any aspect of the object becomes almost nothing this way.
+That's a bit of a lie.
+MDN as 21 different console functions and they all returned `undefined`.
+So they are expressions, they're just dumb expressions ( like `Array.prototype.push` ).
+Which makes debugging logging cumbersome.
+My formatter function suffered from that
 </Notes>
 
 ---
 
 ### Chaining
 
-```js
-const result = console
-    .ident( arr.map( parseNumber s ).filter( removeOdds ) )
-    .reduce( average );
-```
+<Columns.two area={`"a a" "b b"`}>
+<Js>
+    {chainStart}
+</Js>
+<Js>
+    {chainLog}
+</Js>
 
+</Columns.two>
+
+---
+
+### Function Composition
+
+<Columns.two area={`"a a" "b b"`}>
+
+<Js>
+    {parseStart}
+</Js>
+<Js>
+    {parseLog}
+</Js>
+
+</Columns.two>
+
+---
+
+<Grid>
+    <Js>
+        {tapDefinition}
+    </Js>
+</Grid>
 <Notes>
-As an additional example. `console.ident` allows you to keep your chain together when debugging steps.
+I've created `console.tap` is the missing logging function that we need in modern JS.
+First, yes I'm adding it to the global console object, I'm a mad man
+Second this function works with a very simple rule. 1 Value. It takes 1 value, logs that value, and returns that value.
+To the calling function, and the context around it, nothing happens. Which means there is no extra overhead or setup to debugging.
 </Notes>
 
 ---
 
-### Conclusion
+### Function Composition
 
-```js
-console.ident = \n\tv => ( console.log( v ), v );
-```
+<Columns.two area={`"a a" "b b"`}>
+<Js>
+    {parseLog}
+</Js>
+
+<Js>
+    {parseTap}
+</Js>
+
+</Columns.two>
+
+---
+
+### Chaining
+
+<Columns.two area={`"a a" "b b"`}>
+<Js>
+    {chainLog}
+</Js>
+
+<Js>
+    {chainTap}
+</Js>
+
+</Columns.two>
+
+---
+
+### Object Construction, Return Expressions
+
+<Grid>
+<Js>{objectTap}</Js>
+    </Grid>
+<Notes>
+    Digging into any aspect of the object becomes almost nothing this way.
+</Notes>
+
+---
 
 ### `Have Fun!`
+<Grid>
+    <Js>
+        {tapDefinitionExpanded}
+    </Js>
+</Grid>
+
+<br/>
+
+[![NPM](https://nodei.co/npm/console.tap.png)](https://nodei.co/npm/console.tap/)
 
 <Notes>
-I have a module( [GitHub - easilyBaffled/console.ident: Created with CodeSandbox]( https://github.com/easilyBaffled/console.ident ) ) out there that solves a few issues of `console.ident`. And it also lets you choose between adding it to the global object or using as it's own function. But it's 26 characters I encourage you to play with the idea and use the module as a place to discuss it.
+    It's such a simple function that I'm surprised or suspicious that no one else has popularized it.
+    (...unless you look at the ramda docs)
+    I think it belongs in the spec for Javascript, but it needs more than just me playing with it.
+    So I encourage you all to try it out.
+    I have a module( [console.tap]( https://github.com/easilyBaffled/console.tap ) ) out there that solves a few issues of it not being .
+    And it also lets you choose between adding it to the global object or using as it's own function.
+    But it's 26 characters I encourage you to play with the idea and use the module as a place to discuss it.
 </Notes>
