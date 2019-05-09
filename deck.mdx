@@ -50,8 +50,8 @@ export { default as theme } from './theme'
 </div>
 
 <Notes>
-    Hi I'm Danny Michaelis. I've been a frontend developer for 5 years now you can find me as easilyBaffled pretty much everywhere.
-    The Slides for this talk are available on my Github. But really you'll only need the last slide.
+    I'm Danny Michaelis, you can find me pretty much everywhere as easilyBaffled.
+    I have been a front-end developer for about 5 years now. And before that I spent 4 years pretending to use Java at the University of Maryland.
 </Notes>
 
 ---
@@ -61,8 +61,8 @@ export { default as theme } from './theme'
 ### `To fix what ain't broke!`
 
 <Notes>
-    I have a small idea for a pinprick of a problem that I presume people have daily.
-    Story about untangling a big bad knot of JSON
+    I started right before the introduction of Babel. So I got to see the Javascript that was, the Promise of ES6 and well, now.
+    Recently I set out to fix a pin-prick of a problem that arose as a result of ES6 and modern javascript.
 </Notes>
 
 ---
@@ -70,12 +70,17 @@ export { default as theme } from './theme'
     <Js>{objectStart}</Js>
 </Grid>
 <Notes>
-    A concise object formatting. No cruft.
-    I was so proud of it, I was going to write documentation for it.
-    ...And then it all sort of went belly up 😣
-    My unit tests uncovered a beasty of a bug.
-    And all of that nice clean, concise, composed code meant there was no room to fit a `console.log`
-    So I had to make room for it
+    Because THIS, while perhaps a little daunting, is what modern JS has given us.
+    Very concise, very deliberate code.
+    I am able to pull out exactly what I need from the variables, without a name for variables.
+    I can create and return object without the word `return`
+    I have a flattened ternaries instead of an if block, and so on and so forth.
+    I like it, I like it sparse it is. How condensed it is compared to what it would have been a few years ago.
+    But there's a problem, past style preference, past the fact that if you pass a string "0" into number it will eval to false.
+
+    The function is so concise, there's no room for a `console.log`.
+    The moment something goes wrong, ...and it will. The moment I need to log anything in here ...and I will,
+    I have to essentially explode this function.
 </Notes>
 
 ---
@@ -83,8 +88,23 @@ export { default as theme } from './theme'
     <Js>{objectLog}</Js>
 </Grid>
 <Notes>
-    `console.log`, our dear friend `console.log`, is one of the few remnants of an older time.
-    When Javascript was considered one of the worst languages, whereas now it's one of the most popular.
+    And it's not pretty.
+    Again, a pin-prick of a problem, but it's enough to ruin a good train of thought.
+    I wrote this function to really hammer home the issue, perhaps it's bit much.
+</Notes>
+---
+
+<Grid>
+    <Js>{chainLog}</Js>
+</Grid>
+
+<Notes>
+    This might be a bit more common
+    Chaining a bunch of array functions together. One of the hallmarks of ES6.
+    And it has the same issue. There's no room to fit a `console.log`
+
+    And that's because `console.log` is one of the last things in Javascript that hasn't been modernized.
+    It's a remnant of a time when Javascript was consider to be one of the worse languages, whereas now it's one of the most popular.
 </Notes>
 
 ---
@@ -94,9 +114,9 @@ export { default as theme } from './theme'
 
 <Notes>
     Javascript has become a more Expressive language. By which I mean it has become filled with expression.
+    You could go your whole career without hearing about Expressions.
+    But they are one of the two building blocks of javascript.
     Expressions are things that result in a value.
-
-    For Example:
 </Notes>
 
 ---
@@ -131,7 +151,10 @@ export { default as theme } from './theme'
 
 <Notes>
     Essentially Expressions are things that you could pass into a function without issue.
-    Where as Statements, are things there trying to cram them into a function call would throw an error. Like the for loop, or if statement. Blocks essentially.
+    The other half of Javascript are called Statements.
+    Statements, are things there trying to cram them into a function call would throw an error.
+    Like the for loop, or if statement. Blocks essentially.
+    You count on effects and
 </Notes>
 
 ---
