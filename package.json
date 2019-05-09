@@ -1,25 +1,27 @@
 {
-    "private": true,
-    "scripts": {
-        "start": "mdx-deck deck.mdx",
-        "build": "mdx-deck build deck.mdx",
-        "pdf": "mdx-deck pdf deck.mdx",
-        "image": "mdx-deck screenshot deck.mdx",
-        "help": "mdx-deck"
-    },
-    "devDependencies": {
-        "husky": "^1.3.1",
-        "lint-staged": "^8.1.4",
-        "lodash": "latest",
-        "mdx-deck": "latest",
-        "react": "latest"
-    },
-    "name": "console.ident",
-    "version": "1.0.0",
-    "dependencies": {
-        "@emotion/styled": "latest",
-        "@mdx-deck/components": "latest",
-        "console.tap": "^0.2.3",
-        "react-syntax-highlighter": "^10.2.1"
-    }
+  "private": true,
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx",
+    "pdf": "mdx-deck pdf deck.mdx",
+    "image": "mdx-deck screenshot deck.mdx",
+    "help": "mdx-deck"
+  },
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.4",
+    "lodash": "latest",
+    "mdx-deck": "latest",
+    "react": "latest"
+  },
+  "name": "tap-talk",
+  "version": "1.0.0",
+  "dependencies": {
+    "@emotion/styled": "latest",
+    "@mdx-deck/components": "latest",
+    "console.tap": "^0.2.3",
+    "react-syntax-highlighter": "^10.2.1"
+  },
+  "keywords": [],
+  "description": "A lightning talk about console.tap"
 }
