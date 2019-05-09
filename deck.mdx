@@ -15,7 +15,8 @@ import {
 } from './codeExamples'
 import Js from './CodeBlock'
 export { default as theme } from './theme'
-
+import img from 'file-loader!./chrome-console.png'
+console.log(img)
 
 ## EasilyBaffled
 
@@ -31,7 +32,7 @@ export { default as theme } from './theme'
 />
 
 <div style={{ margin: '2vw' }}>
-    <a href="https://github.com/easilyBaffled/ident-presentation.git">
+    <a href="https://github.com/easilyBaffled/tap-talk">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
@@ -66,6 +67,7 @@ export { default as theme } from './theme'
 </Notes>
 
 ---
+
 <Grid>
     <Js>{objectStart}</Js>
 </Grid>
@@ -84,18 +86,21 @@ export { default as theme } from './theme'
 </Notes>
 
 ---
+
 <Grid>
     <Js>{objectLog}</Js>
 </Grid>
+
 <Notes>
     And it's not pretty.
     Again, a pin-prick of a problem, but it's enough to ruin a good train of thought.
     I wrote this function to really hammer home the issue, perhaps it's bit much.
 </Notes>
+
 ---
 
 <Grid>
-    <Js>{chainLog}</Js>
+    <Js>{chainStart}</Js>
 </Grid>
 
 <Notes>
@@ -209,7 +214,7 @@ There is no `Expression` console function.
 
 ---
 
-<Image width="50vw" height="30vh" src="chrome-console.png"/>
+<Image width="70vw" height="30vh" src={img}/>
 
 <Notes>
 That's a bit of a lie.
