@@ -15,7 +15,8 @@ import {
 } from './codeExamples'
 import Js from './CodeBlock'
 export { default as theme } from './theme'
-
+import img from 'file-loader!./chrome-console.png'
+console.log(img)
 
 ## EasilyBaffled
 
@@ -213,7 +214,7 @@ There is no `Expression` console function.
 
 ---
 
-<Image width="50vw" height="30vh" src="chrome-console.png"/>
+<Image width="70vw" height="30vh" src={img}/>
 
 <Notes>
 That's a bit of a lie.

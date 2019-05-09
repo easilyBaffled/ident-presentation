@@ -20,6 +20,7 @@
     "@emotion/styled": "latest",
     "@mdx-deck/components": "latest",
     "console.tap": "^0.2.3",
+    "file-loader": "3.0.1",
     "react-syntax-highlighter": "^10.2.1"
   },
   "keywords": [],
