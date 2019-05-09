@@ -6,14 +6,14 @@ export const tapDefinition = `
 `;
 
 export const tapDefinitionExpanded = `
-console.tap = v => {
+    console.tap = v => {
         console.log( v )
         return v
     };
     
     // or, for the bold   
     console.tap = v => ( console.log( v ), v );
-`
+`;
 export const chainStart = `
     const result = arr
         .map( parseNumbers )
@@ -83,7 +83,7 @@ export const objectLog = `
         console.log( res )
         return res;
     };
-`
+`;
 export const objectTap = `
     const pickAndFormatTransaction = ( {
         description,
@@ -97,4 +97,4 @@ export const objectTap = `
             ? formatCurrency( amount )
             : amount
      } );
-`
+`;
